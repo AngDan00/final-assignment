@@ -1,0 +1,123 @@
+prot)
+file=open("rosalind_prot.txt")
+line=file.readlines()
+seq=str(line[0].strip())
+def translate(seq): 
+    table={"UUU":"F", "UUC":"F", "UUA":"L", "UUG":"L",
+       "UCU":"S", "UCC":"S", "UCA":"S", "UCG":"S",
+       "UAU":"Y", "UAC":"Y", "UAA":"STOP", "UAG":"STOP",
+       "UGU":"C", "UGC":"C", "UGA":"STOP", "UGG":"W",
+       "CUU":"L", "CUC":"L", "CUA":"L", "CUG":"L",
+       "CCU":"P", "CCC":"P", "CCA":"P", "CCG":"P",
+       "CAU":"H", "CAC":"H", "CAA":"Q", "CAG":"Q",
+       "CGU":"R", "CGC":"R", "CGA":"R", "CGG":"R",
+       "AUU":"I", "AUC":"I", "AUA":"I", "AUG":"M",
+       "ACU":"T", "ACC":"T", "ACA":"T", "ACG":"T",
+       "AAU":"N", "AAC":"N", "AAA":"K", "AAG":"K",
+       "AGU":"S", "AGC":"S", "AGA":"R", "AGG":"R",
+       "GUU":"V", "GUC":"V", "GUA":"V", "GUG":"V",
+       "GCU":"A", "GCC":"A", "GCA":"A", "GCG":"A",
+       "GAU":"D", "GAC":"D", "GAA":"E", "GAG":"E",
+       "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G",}
+    protein ="" 
+    if len(seq)%3 == 0: 
+        for i in range(0, len(seq), 3): 
+            codon = seq[i:i + 3] 
+            if table[codon] != "STOP":
+                protein+= table[codon] 
+    return protein 
+print(translate(seq))
+
+splc)
+from Bio import SeqIO
+lst=[]
+with open("rosalind_splc.txt", "r") as handle:
+    for seq in SeqIO.parse(handle, "fasta"):
+        id=seq.id
+        sequ=str(seq.seq.transcribe())
+        lst.append(sequ)
+    dna=lst[0]
+    exo=lst[1:]
+    for i in range(len(exo)):
+        dna=dna.replace(exo[i],'')
+    
+    def translate(dna): 
+        table={"UUU":"F", "UUC":"F", "UUA":"L", "UUG":"L",
+       "UCU":"S", "UCC":"S", "UCA":"S", "UCG":"S",
+       "UAU":"Y", "UAC":"Y", "UAA":"STOP", "UAG":"STOP",
+       "UGU":"C", "UGC":"C", "UGA":"STOP", "UGG":"W",
+       "CUU":"L", "CUC":"L", "CUA":"L", "CUG":"L",
+       "CCU":"P", "CCC":"P", "CCA":"P", "CCG":"P",
+       "CAU":"H", "CAC":"H", "CAA":"Q", "CAG":"Q",
+       "CGU":"R", "CGC":"R", "CGA":"R", "CGG":"R",
+       "AUU":"I", "AUC":"I", "AUA":"I", "AUG":"M",
+       "ACU":"T", "ACC":"T", "ACA":"T", "ACG":"T",
+       "AAU":"N", "AAC":"N", "AAA":"K", "AAG":"K",
+       "AGU":"S", "AGC":"S", "AGA":"R", "AGG":"R",
+       "GUU":"V", "GUC":"V", "GUA":"V", "GUG":"V",
+       "GCU":"A", "GCC":"A", "GCA":"A", "GCG":"A",
+       "GAU":"D", "GAC":"D", "GAA":"E", "GAG":"E",
+       "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G"}
+        protein ="" 
+        if len(dna)%3 == 0: 
+            for i in range(0, len(dna), 3): 
+                codon = dna[i:i + 3] 
+                if table[codon] != "STOP":
+                    protein+= table[codon] 
+        return protein 
+    print(translate(dna))
+    
+tran)
+from Bio.Seq import Seq
+from Bio import SeqIO
+lst=[]
+trans=0
+tranv=0
+with open("rosalind_tran.txt", "r") as handle:
+    for seq in SeqIO.parse(handle, "fasta"):
+        sequ=str(seq.seq)
+        lst.append(sequ)
+    seq1=lst[0]
+    seq2=lst[1]
+    for i in range(len(seq1)):
+        if seq1[i] == seq2[i]:
+            pass
+        elif seq1[i] in [['A', 'G'],['C', 'T']][seq2[i] in ['C', 'T']]:
+            trans+= 1
+        else:
+            tranv +=1
+    print (trans/tranv)
+ 
+hamm)
+file=open("rosalind_hamm.txt")
+line=file.readlines()
+string1=str(line[0].strip())
+string2=str(line[1].strip())
+mis = 0
+L = len(string1)
+for i in range(L):
+    if len(string1)==len(string2):
+        if string1[i] != string2[i]:
+            mis += 1
+print(mis)
+
+perm)
+from itertools import permutations
+import math
+file=open('rosalind_perm.txt')
+line=file.readlines()
+n=int(line[0])
+lst=[]
+i=0
+a=0
+print(math.factorial(n))
+while i<n:
+    i+=1
+    lst.append(i)
+perm=permutations(lst)
+for i in perm:
+    a=a+1
+    print(*i)
+
+
+    
