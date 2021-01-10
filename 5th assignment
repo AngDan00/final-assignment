@@ -158,6 +158,30 @@ for i in set(protlst):
     print(i) 
     
 sseq)
+from Bio import SeqIO
+lst=[]
+with open("rosalind_sseq.txt", "r") as handle:
+    for seq in SeqIO.parse(handle, "fasta"):
+        lst.append(seq.seq)
+seq1,seq2=lst[0],lst[1]
+starting=0
+for i in seq2:
+    position=seq1.find(i,starting)
+    print(position + 1,end=' ')
+    starting=position+1
+    
+tree)
+file = open('rosalind_tree.txt', 'r')
+line=file.readlines()
+n,adj = int(line[0]),len(line[1:])
+print(n-(adj+1))
+
+edit)
+
+
+
+
+
 
 
     
