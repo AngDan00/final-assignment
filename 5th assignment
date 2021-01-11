@@ -176,10 +176,37 @@ line=file.readlines()
 n,adj = int(line[0]),len(line[1:])
 print(n-(adj+1))
 
-edit)
+edit) #Done in Sequence Similarity lession 19
+from Bio import SeqIO
+seq=[]
+with open ('rosalind_edit.txt') as fa:
+    for i  in SeqIO.parse(fa,'fasta'):
+        seq.append(str(i.seq))  
+s1,s2 = seq
 
+def edit(s1, s2):
+    if len(seq1) > len(s2):
+        s1, s2 = s2, s1
+    distances = range(len(s1) + 1)
+    for i2, c2 in enumerate(s2):
+        distances_ = [i2+1]
+        for i1, c1 in enumerate(s1):
+            if c1 == c2:
+                distances_.append(distances[i1])
+            else:
+                distances_.append(1 + min((distances[i1],
+                                    distances[i1 + 1],
+                                    distances_[-1])))
+        distances = distances_
+    return distances[-1]
 
+print(edit(s1,s2))
 
+inod)
+file=open('rosalind_inod.txt')
+lines=file.readlines()
+n=int(lines[0])
+print(n-2)
 
 
 
