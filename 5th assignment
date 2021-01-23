@@ -211,7 +211,7 @@ print(n-2)
 grph)
 from Bio import SeqIO
 n = 3
-with open('untitled.txt') as f:
+with open('rosalind_grph.txt') as f:
     fasta_sequences = list(SeqIO.parse(f, 'fasta')) 
 for i in fasta_sequences:
     for j in fasta_sequences:
