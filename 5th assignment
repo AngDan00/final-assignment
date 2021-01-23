@@ -208,7 +208,20 @@ lines=file.readlines()
 n=int(lines[0])
 print(n-2)
 
-
+grph)
+from Bio import SeqIO
+n = 3
+with open('untitled.txt') as f:
+    fasta_sequences = list(SeqIO.parse(f, 'fasta')) 
+for i in fasta_sequences:
+    for j in fasta_sequences:
+        name1, sequence1 = i.id, str(i.seq)
+        name2, sequence2 = j.id, str(j.seq)
+        if sequence1 == sequence2:
+            continue
+        suff,pref = sequence1[-n:],sequence2[:n]
+        if pref== suff:
+            print(name1, name2)
 
 
     
