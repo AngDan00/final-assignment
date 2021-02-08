@@ -222,6 +222,46 @@ for i in fasta_sequences:
         suff,pref = sequence1[-n:],sequence2[:n]
         if pref== suff:
             print(name1, name2)
+LCSQ)
+from Bio import SeqIO
+l=[]
+for i in SeqIO.parse("rosalind_lcsq.txt", 'fasta'):
+    l.append(str(i.seq))
 
+X=l[0]
+Y=l[1]
+
+a=len(X) 
+b=len(Y) 
+g=[[0 for x in range(a+1)] for x in range(b+1)]
+for q in range(1,b+1):
+    for k in range(1,a+1):
+        if X[k-1]==Y[q-1]:
+            g[q][k]=g[q-1][k-1] + 1
+        else:
+            g[q][k]=max(g[q-1][k],g[q][k-1])
+q=len(g)-1
+k=len(g[0])-1
+
+lcsq=''
+if q and k != 0:   
+    while q > 0 and k > 0:
+        u=g[q-1][k]
+        rg=g[q-1][k-1]
+        lf=g[q][k-1]
+        act=g[q][k]
+        if act>rg and act > u and act>lf:
+            lcsq += Y[q-1]
+            q-=1
+            k-=1
+        elif act>rg and act==u:
+            q-=1
+        else:
+            k-=1
+    lcsq=lcsq[::-1]
+
+print(lcsq)
+
+GLOB)
 
     
