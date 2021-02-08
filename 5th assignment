@@ -265,7 +265,6 @@ print(lcsq)
 GLOB)
 from Bio import pairwise2
 from Bio import SeqIO
-lst=[]
 blosum62 = {
     ('W', 'F'): 1, ('L', 'R'): -2, ('S', 'P'): -1, ('V', 'T'): 0,
     ('Q', 'Q'): 5, ('N', 'A'): -2, ('Z', 'Y'): -2, ('W', 'R'): -3,
@@ -337,12 +336,13 @@ blosum62 = {
     ('F', 'D'): -3, ('X', 'Y'): -1, ('Z', 'R'): 0, ('F', 'H'): -1,
     ('B', 'F'): -3, ('F', 'L'): 0, ('X', 'Q'): -1, ('B', 'B'): 4
 }
+lst=[]
 with open("rosalind_glob.txt", "r") as handle:
     for seq in SeqIO.parse(handle, "fasta"):
         id=seq.id
-        sequ=str(seq.seq.transcribe())
+        sequ=str(seq.seq)
         lst.append(sequ)
 prot1=lst[0]
-port2=lst[1]
+prot2=lst[1]
 al=pairwise2.align.globalds(prot1,prot2,blosum62,-5,-5)
-print(pairwise2.format_alignment(*al[0]))
+print(int(al[1][2]))
